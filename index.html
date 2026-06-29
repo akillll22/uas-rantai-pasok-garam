@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prototype Sistem Informasi Rantai Pasok Garam Madura - Visualisasi alur distribusi garam dari tambak hingga ke konsumen untuk UAS Analisis & Perancangan TI.">
+    <title>Sistem Informasi Rantai Pasok Garam Madura</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- STICKY NAVBAR -->
+    <header class="navbar-container">
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-icon"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <span>SI-RPGM</span>
+            </a>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="nav-link active">Beranda</a></li>
+                <li><a href="#urgensi" class="nav-link">Urgensi</a></li>
+                <li><a href="#alur" class="nav-link">Alur Distribusi</a></li>
+                <li><a href="#aktor" class="nav-link">Aktor Utama</a></li>
+                <li><a href="#masalah-solusi" class="nav-link">Masalah & Solusi</a></li>
+                <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-content container">
+            <span class="hero-badge fade-in">Prototype Sistem Informasi - UAS APTI</span>
+            <h1 class="hero-title fade-in">Sistem Informasi<br><span class="highlight">Rantai Pasok Garam</span> Madura</h1>
+            <p class="hero-subtitle fade-in">Visualisasi alur distribusi garam dari tambak hingga sampai ke tangan konsumen sebagai implementasi konsep Supply Chain Management yang efisien dan transparan.</p>
+            <div class="hero-actions fade-in">
+                <a href="#alur" class="btn btn-primary">
+                    <span>Lihat Rantai Pasok</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="#dashboard" class="btn btn-secondary">Pelajari Sistem</a>
+            </div>
+        </div>
+        <div class="hero-visual container fade-in">
+            <div class="hero-card-preview">
+                <div class="preview-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="preview-title">Peta Distribusi & Alur Garam Madura</span>
+                </div>
+                <div class="preview-body">
+                    <div class="visual-placeholder">
+                        <!-- Custom SVG Map / Grid Illustration representing Madura supply route -->
+                        <svg viewBox="0 0 800 300" class="svg-map-illustration" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background Grid -->
+                            <defs>
+                                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                                </pattern>
+                                <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#328cc1" />
+                                    <stop offset="100%" stop-color="#0b3c5d" />
+                                </linearGradient>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid)" />
+                            
+                            <!-- Island Shape (Abstract Madura Island) -->
+                            <path d="M 150 180 C 250 120, 450 130, 700 160 C 650 200, 350 230, 150 180 Z" fill="rgba(50, 140, 193, 0.1)" stroke="rgba(50, 140, 193, 0.3)" stroke-width="2" stroke-dasharray="5 5" />
+                            
+                            <!-- Supply Nodes -->
+                            <!-- Node 1: Tambak (Sumenep/Pamekasan) -->
+                            <g class="map-node" transform="translate(600, 160)">
+                                <circle r="25" fill="url(#blueGrad)" opacity="0.8"/>
+                                <circle r="35" stroke="#328cc1" stroke-width="1.5" fill="none" class="ping-circle" />
+                                <text y="5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">Tambak</text>
+                            </g>
+                            
+                            <!-- Node 2: Gudang Pengepul -->
+                            <g class="map-node" transform="translate(450, 180)">
+                                <circle r="25" fill="url(#blueGrad)" opacity="0.8"/>
+                                <text y="5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">Pengepul</text>
+                            </g>
+                            
+                            <!-- Node 3: Pabrik Pengolahan (Surabaya/Gresik/Madura) -->
+                            <g class="map-node" transform="translate(280, 150)">
+                                <circle r="25" fill="url(#blueGrad)" opacity="0.8"/>
+                                <text y="5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">Pabrik</text>
+                            </g>
+
+                            <!-- Node 4: Distributor / Konsumen -->
+                            <g class="map-node" transform="translate(100, 140)">
+                                <circle r="25" fill="url(#blueGrad)" opacity="0.8"/>
+                                <text y="5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">Pasar</text>
+                            </g>
+                            
+                            <!-- Paths -->
+                            <path d="M 600 160 Q 525 185, 450 180" stroke="#328cc1" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="8 6" class="flow-line"/>
+                            <path d="M 450 180 Q 365 155, 280 150" stroke="#328cc1" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="8 6" class="flow-line"/>
+                            <path d="M 280 150 Q 190 135, 100 140" stroke="#328cc1" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="8 6" class="flow-line"/>
+                            
+                            <!-- Flowing Particles -->
+                            <circle r="5" fill="#fff" class="flow-particle p1" />
+                            <circle r="5" fill="#fff" class="flow-particle p2" />
+                            <circle r="5" fill="#fff" class="flow-particle p3" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- URGENSI SECTION (Mengapa Rantai Pasok Penting) -->
+    <section id="urgensi" class="urgensi-section section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Urgensi Sistem</span>
+                <h2 class="section-title">Mengapa Rantai Pasok Garam Penting?</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Pengelolaan rantai pasok (Supply Chain) yang terstruktur menjadi kunci keberhasilan industri garam lokal dalam bersaing secara nasional.</p>
+            </div>
+            
+            <div class="urgensi-grid">
+                <!-- Urgensi Card 1 -->
+                <div class="urgensi-card scroll-reveal">
+                    <div class="card-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
+                    <h3>Menjaga Ketersediaan Garam</h3>
+                    <p>Memastikan pasokan garam dari para petani di Madura mengalir tanpa hambatan demi mencukupi kebutuhan konsumsi rumah tangga dan sektor industri nasional secara konsisten.</p>
+                </div>
+                
+                <!-- Urgensi Card 2 -->
+                <div class="urgensi-card scroll-reveal">
+                    <div class="card-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3>Koordinasi Antar Pelaku</h3>
+                    <p>Menghubungkan petani, pengepul, pabrik pengolahan, hingga distributor dalam satu sistem komunikasi yang transparan guna mengurangi risiko kesalahpahaman data stok.</p>
+                </div>
+                
+                <!-- Urgensi Card 3 -->
+                <div class="urgensi-card scroll-reveal">
+                    <div class="card-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <h3>Stabilitas Kualitas & Harga</h3>
+                    <p>Meminimalkan fluktuasi harga ekstrem di pasar akibat penimbunan atau kelangkaan, sekaligus menjaga standar mutu yodium garam sesuai regulasi kesehatan nasional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALUR RANTAI PASOK GARAM (Visualisasi Utama) -->
+    <section id="alur" class="alur-section section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Fokus Utama</span>
+                <h2 class="section-title text-white">Visualisasi Alur Rantai Pasok Garam</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle text-light">Pahami bagaimana kristal garam Madura mengalir dari tambak tradisional pesisir hingga siap digunakan oleh konsumen akhir.</p>
+            </div>
+
+            <!-- Horizontal / Interactive Timeline for Supply Chain -->
+            <div class="timeline-container scroll-reveal">
+                <div class="timeline-track">
+                    <div class="timeline-progress-line" id="timelineProgress"></div>
+                    
+                    <!-- Step 1 -->
+                    <div class="timeline-step active" data-step="1">
+                        <div class="step-marker">
+                            <span class="step-num">1</span>
+                            <span class="step-emoji">🧂</span>
+                        </div>
+                        <div class="step-card">
+                            <h4>1. Petani Garam</h4>
+                            <p class="step-role">Aktor Hulu / Produsen</p>
+                            <p class="step-desc">Proses kristalisasi air laut di tambak garam tradisional Madura hingga panen.</p>
+                            <span class="step-badge">Panen & Penjemuran</span>
+                            <div class="step-next-link">Dikirim ke Pengepul &rarr;</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="timeline-step" data-step="2">
+                        <div class="step-marker">
+                            <span class="step-num">2</span>
+                            <span class="step-emoji">📦</span>
+                        </div>
+                        <div class="step-card">
+                            <h4>2. Pengepul Garam</h4>
+                            <p class="step-role">Konsolidator Logistik</p>
+                            <p class="step-desc">Mengumpulkan hasil panen dari berbagai petani lokal untuk penumpukan skala besar.</p>
+                            <span class="step-badge">Penyortiran Awal</span>
+                            <div class="step-next-link">Dikirim ke Pabrik &rarr;</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="timeline-step" data-step="3">
+                        <div class="step-marker">
+                            <span class="step-num">3</span>
+                            <span class="step-emoji">🏭</span>
+                        </div>
+                        <div class="step-card">
+                            <h4>3. Pengolahan & Kemas</h4>
+                            <p class="step-role">Unit Manufaktur</p>
+                            <p class="step-desc">Pencucian, iodisasi (penambahan yodium), pengeringan mesin, dan pengemasan produk.</p>
+                            <span class="step-badge">Standarisasi SNI</span>
+                            <div class="step-next-link">Diserahkan ke Distributor &rarr;</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="timeline-step" data-step="4">
+                        <div class="step-marker">
+                            <span class="step-num">4</span>
+                            <span class="step-emoji">🚚</span>
+                        </div>
+                        <div class="step-card">
+                            <h4>4. Distributor</h4>
+                            <p class="step-role">Penyedia Transportasi</p>
+                            <p class="step-desc">Distribusi logistik menggunakan truk darat atau kapal laut ke berbagai daerah di Indonesia.</p>
+                            <span class="step-badge">Transportasi Makro</span>
+                            <div class="step-next-link">Disalurkan ke Pengecer &rarr;</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="timeline-step" data-step="5">
+                        <div class="step-marker">
+                            <span class="step-num">5</span>
+                            <span class="step-emoji">🏪</span>
+                        </div>
+                        <div class="step-card">
+                            <h4>5. Pengecer / Industri</h4>
+                            <p class="step-role">Titik Penjualan Akhir</p>
+                            <p class="step-desc">Garam dijual di pasar tradisional, minimarket, atau langsung masuk ke industri makanan.</p>
+                            <span class="step-badge">Ketersediaan Pasar</span>
+                            <div class="step-next-link">Diterima Konsumen &rarr;</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="timeline-step" data-step="6">
+                        <div class="step-marker">
+                            <span class="step-num">6</span>
+                            <span class="step-emoji">👨‍👩‍👧</span>
+                        </div>
+                        <div class="step-card">
+                            <h4>6. Konsumen Akhir</h4>
+                            <p class="step-role">Pengguna Akhir</p>
+                            <p class="step-desc">Masyarakat umum, rumah tangga, atau industri kuliner yang menggunakan garam.</p>
+                            <span class="step-badge">Konsumsi Sehat</span>
+                            <div class="step-next-link">Siklus Selesai</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Flow Detail Box (Interactive Description) -->
+            <div id="stepDetailBox" class="step-detail-box scroll-reveal">
+                <div class="detail-header">
+                    <span class="detail-number" id="detailNum">01</span>
+                    <h3 id="detailTitle">Petani Garam</h3>
+                </div>
+                <div class="detail-content-grid">
+                    <div class="detail-text-col">
+                        <h4>Peran Utama dalam Rantai Pasok:</h4>
+                        <p id="detailRoleText">Produsen utama yang bertanggung jawab memproduksi garam mentah berkualitas (K3/K2/K1) menggunakan lahan tambak garam air laut tradisional.</p>
+                        
+                        <h4 class="mt-4">Hubungan dengan Tahapan Berikutnya:</h4>
+                        <p id="detailNextText">Menjual garam mentah hasil panen ke pengepul lokal karena keterbatasan modal transportasi dan gudang penyimpanan mandiri.</p>
+                    </div>
+                    <div class="detail-stats-col">
+                        <div class="stat-mini">
+                            <span class="stat-mini-label">Rata-rata Waktu Siklus</span>
+                            <span class="stat-mini-val" id="detailStatTime">21 - 30 Hari</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-mini-label">Metode Pengiriman</span>
+                            <span class="stat-mini-val" id="detailStatDelivery">Karung Plastik (Goni) via Pikap</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AKTOR DALAM RANTAI PASOK -->
+    <section id="aktor" class="aktor-section section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Pelaku Usaha</span>
+                <h2 class="section-title">Aktor & Peran Rantai Pasok</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Setiap aktor memiliki peran krusial yang saling memengaruhi efisiensi dan harga garam akhir di pasar nasional.</p>
+            </div>
+
+            <div class="aktor-grid">
+                <!-- Aktor 1 -->
+                <div class="aktor-card scroll-reveal">
+                    <div class="aktor-card-bg"></div>
+                    <div class="aktor-badge">Hulu</div>
+                    <div class="aktor-icon">👨‍🌾</div>
+                    <h3>Petani Garam</h3>
+                    <p class="aktor-desc">Mengolah air laut di tambak tradisional Madura. Fokus utama pada proses kristalisasi matahari dan menjaga produktivitas lahan tambak.</p>
+                    <ul class="aktor-tasks">
+                        <li><span>Memantau salinitas air laut</span></li>
+                        <li><span>Melakukan proses kristalisasi</span></li>
+                        <li><span>Memanen garam mentah krosok</span></li>
+                    </ul>
+                </div>
+
+                <!-- Aktor 2 -->
+                <div class="aktor-card scroll-reveal">
+                    <div class="aktor-card-bg"></div>
+                    <div class="aktor-badge">Konsolidator</div>
+                    <div class="aktor-icon">📦</div>
+                    <h3>Pengepul Lokal</h3>
+                    <p class="aktor-desc">Berperan sebagai pengumpul garam dari berbagai petani kecil. Mereka menyortir kualitas garam mentah dan menyediakan armada logistik.</p>
+                    <ul class="aktor-tasks">
+                        <li><span>Membeli garam dari petani</span></li>
+                        <li><span>Melakukan sortasi kualitas (K1/K2/K3)</span></li>
+                        <li><span>Menyimpan stok di gudang transit</span></li>
+                    </ul>
+                </div>
+
+                <!-- Aktor 3 -->
+                <div class="aktor-card scroll-reveal">
+                    <div class="aktor-card-bg"></div>
+                    <div class="aktor-badge">Manufaktur</div>
+                    <div class="aktor-icon">🏭</div>
+                    <h3>Unit Pengolahan</h3>
+                    <p class="aktor-desc">Pabrik pengolahan garam yang melakukan iodisasi agar layak konsumsi (SNI). Mengubah garam krosok menjadi garam meja atau garam industri.</p>
+                    <ul class="aktor-tasks">
+                        <li><span>Proses pencucian garam (washing)</span></li>
+                        <li><span>Fortifikasi Yodium (KIO3)</span></li>
+                        <li><span>Pengemasan sesuai standar pasar</span></li>
+                    </ul>
+                </div>
+
+                <!-- Aktor 4 -->
+                <div class="aktor-card scroll-reveal">
+                    <div class="aktor-card-bg"></div>
+                    <div class="aktor-badge">Logistik</div>
+                    <div class="aktor-icon">🚚</div>
+                    <h3>Distributor</h3>
+                    <p class="aktor-desc">Entitas logistik skala besar yang menyalurkan produk garam kemasan ke berbagai jaringan ritel dan gudang wilayah di seluruh Indonesia.</p>
+                    <ul class="aktor-tasks">
+                        <li><span>Manajemen pergudangan pusat</span></li>
+                        <li><span>Transportasi antarpulau & provinsi</span></li>
+                        <li><span>Menjaga rantai pasok agar tidak putus</span></li>
+                    </ul>
+                </div>
+
+                <!-- Aktor 5 -->
+                <div class="aktor-card scroll-reveal">
+                    <div class="aktor-card-bg"></div>
+                    <div class="aktor-badge">Ritel</div>
+                    <div class="aktor-icon">🏪</div>
+                    <h3>Pengecer & Industri</h3>
+                    <p class="aktor-desc">Supermarket, toko kelontong, pasar tradisional, dan sektor industri pangan/kimia yang menyerap pasokan garam olahan secara harian.</p>
+                    <ul class="aktor-tasks">
+                        <li><span>Display produk di rak penjualan</span></li>
+                        <li><span>Bahan baku industri makanan/kimia</span></li>
+                        <li><span>Transaksi langsung dengan konsumen</span></li>
+                    </ul>
+                </div>
+
+                <!-- Aktor 6 -->
+                <div class="aktor-card scroll-reveal">
+                    <div class="aktor-card-bg"></div>
+                    <div class="aktor-badge">Hilir</div>
+                    <div class="aktor-icon">👨‍👩‍👧</div>
+                    <h3>Konsumen</h3>
+                    <p class="aktor-desc">Masyarakat umum yang menggunakan garam beryodium untuk kebutuhan dapur rumah tangga sehari-hari maupun usaha kuliner skala mikro.</p>
+                    <ul class="aktor-tasks">
+                        <li><span>Pengguna akhir produk garam</span></li>
+                        <li><span>Menuntut harga yang stabil & terjangkau</span></li>
+                        <li><span>Mengandalkan kualitas garam SNI</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERMASALAHAN DAN SOLUSI -->
+    <section id="masalah-solusi" class="masalah-solusi-section section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Analisis Sistem</span>
+                <h2 class="section-title">Permasalahan & Solusi Rantai Pasok</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Identifikasi tantangan utama dalam rantai pasok garam Madura serta strategi perbaikan teknologi informasi untuk masa depan.</p>
+            </div>
+
+            <!-- Comparison Dashboard Layout -->
+            <div class="dashboard-grid">
+                <!-- Column 1: Permasalahan (Red Tone Accents) -->
+                <div class="dashboard-panel panel-danger scroll-reveal">
+                    <div class="panel-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="panel-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        <h3>Tantangan & Kendala Saat Ini</h3>
+                    </div>
+                    <div class="panel-body">
+                        <!-- Problem Card 1 -->
+                        <div class="issue-item">
+                            <div class="issue-number">01</div>
+                            <div class="issue-content">
+                                <h4>Ketergantungan Cuaca Ekstrem</h4>
+                                <p>Produksi garam sangat dipengaruhi musim kemarau. Hujan yang turun di luar musim dapat menggagalkan proses kristalisasi garam di tambak secara total.</p>
+                            </div>
+                        </div>
+                        <!-- Problem Card 2 -->
+                        <div class="issue-item">
+                            <div class="issue-number">02</div>
+                            <div class="issue-content">
+                                <h4>Jalur Distribusi yang Panjang & Belum Optimal</h4>
+                                <p>Banyaknya perantara (tengkulak) tidak resmi membuat rantai pasok terlalu panjang, sehingga biaya logistik naik tetapi margin keuntungan petani tetap rendah.</p>
+                            </div>
+                        </div>
+                        <!-- Problem Card 3 -->
+                        <div class="issue-item">
+                            <div class="issue-number">03</div>
+                            <div class="issue-content">
+                                <h4>Fluktuasi Harga yang Tajam</h4>
+                                <p>Ketika panen raya, harga garam mentah anjlok drastis akibat melimpahnya pasokan di pengepul tanpa adanya sistem kontrol batas bawah harga yang efektif.</p>
+                            </div>
+                        </div>
+                        <!-- Problem Card 4 -->
+                        <div class="issue-item">
+                            <div class="issue-number">04</div>
+                            <div class="issue-content">
+                                <h4>Kapasitas Penyimpanan (Gudang) Terbatas</h4>
+                                <p>Kurangnya gudang penyimpanan (Warehouse) berstandar SRG (Sistem Resi Gudang) di tingkat petani membuat garam mudah rusak terkena kelembaban tinggi.</p>
+                            </div>
+                        </div>
+                        <!-- Problem Card 5 -->
+                        <div class="issue-item">
+                            <div class="issue-number">05</div>
+                            <div class="issue-content">
+                                <h4>Tekanan Persaingan Garam Impor</h4>
+                                <p>Garam impor industri sering merembes ke pasar garam konsumsi lokal karena harga yang lebih murah dan tingkat kemurnian NaCl yang lebih tinggi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Solusi (Green/Blue Tone Accents) -->
+                <div class="dashboard-panel panel-success scroll-reveal">
+                    <div class="panel-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="panel-icon"><polyline points="22 11.08 17 18 14 15"></polyline><path d="M22 4L12 14.01 9 11.01"></path><path d="M18.12 13a9 9 0 1 1-6.12-11.88"></path></svg>
+                        <h3>Solusi & Strategi Integrasi</h3>
+                    </div>
+                    <div class="panel-body">
+                        <!-- Solution Card 1 -->
+                        <div class="solution-item">
+                            <div class="solution-icon">📱</div>
+                            <div class="solution-content">
+                                <h4>Digitalisasi Sistem Distribusi</h4>
+                                <p>Implementasi platform informasi rantai pasok untuk mencatat volume transaksi dan melacak perjalanan logistik garam secara transparan.</p>
+                            </div>
+                        </div>
+                        <!-- Solution Card 2 -->
+                        <div class="solution-item">
+                            <div class="solution-icon">📊</div>
+                            <div class="solution-content">
+                                <h4>Monitoring Stok Real-Time</h4>
+                                <p>Penyediaan dasbor ketersediaan stok garam di gudang pengepul dan unit pengolahan untuk mencegah kelangkaan maupun kelebihan pasokan.</p>
+                            </div>
+                        </div>
+                        <!-- Solution Card 3 -->
+                        <div class="solution-item">
+                            <div class="solution-icon">🧪</div>
+                            <div class="solution-content">
+                                <h4>Peningkatan Mutu & Teknologi Tambak</h4>
+                                <p>Penggunaan teknologi geomembran (HDPE) di tambak garam untuk meningkatkan kecepatan kristalisasi dan kualitas NaCl agar setara standar industri.</p>
+                            </div>
+                        </div>
+                        <!-- Solution Card 4 -->
+                        <div class="solution-item">
+                            <div class="solution-icon">🤝</div>
+                            <div class="solution-content">
+                                <h4>Penguatan Koperasi Petani & Resi Gudang</h4>
+                                <p>Mengaktifkan koperasi tani agar memiliki daya tawar tinggi terhadap pengepul, serta memanfaatkan fasilitas resi gudang saat harga jatuh.</p>
+                            </div>
+                        </div>
+                        <!-- Solution Card 5 -->
+                        <div class="solution-item">
+                            <div class="solution-icon">🏛️</div>
+                            <div class="solution-content">
+                                <h4>Kolaborasi Regulasi Pemerintah</h4>
+                                <p>Pengetatan kuota impor garam industri serta sinkronisasi data kebutuhan garam nasional antara kementerian kelautan dan pelaku usaha garam Madura.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD RINGKAS (Statistik & Visualisasi Terintegrasi) -->
+    <section id="dashboard" class="dashboard-section section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Metrik Operasional</span>
+                <h2 class="section-title">Dashboard Simulasi Rantai Pasok</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Gambaran performa dan statistik alur logistik garam Madura dalam visualisasi ringkas sistem informasi.</p>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="stats-grid">
+                <!-- Stat Card 1 -->
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-icon-bg">🔗</div>
+                    <div class="stat-info">
+                        <span class="stat-number" data-target="6">0</span>
+                        <span class="stat-label">Tahapan Rantai Pasok</span>
+                    </div>
+                </div>
+                <!-- Stat Card 2 -->
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-icon-bg">👥</div>
+                    <div class="stat-info">
+                        <span class="stat-number" data-target="6">0</span>
+                        <span class="stat-label">Aktor Terintegrasi</span>
+                    </div>
+                </div>
+                <!-- Stat Card 3 -->
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-icon-bg">⚙️</div>
+                    <div class="stat-info">
+                        <span class="stat-number" data-target="100" data-suffix="%">0%</span>
+                        <span class="stat-label">Alur Terkoneksi</span>
+                    </div>
+                </div>
+                <!-- Stat Card 4 -->
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-icon-bg">📈</div>
+                    <div class="stat-info">
+                        <span class="stat-number" data-target="87" data-suffix="%">0%</span>
+                        <span class="stat-label">Efisiensi Distribusi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Dashboard Simulator (Interactive CSS Chart) -->
+            <div class="dashboard-simulator scroll-reveal">
+                <div class="simulator-header">
+                    <div class="sim-badge">SISTEM MONITORING LOGISTIK</div>
+                    <h4>Simulasi Beban Alur Distribusi</h4>
+                </div>
+                <div class="simulator-body">
+                    <div class="chart-container">
+                        <div class="chart-y-axis">
+                            <span>100%</span>
+                            <span>75%</span>
+                            <span>50%</span>
+                            <span>25%</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="chart-bars">
+                            <!-- Bar 1 -->
+                            <div class="chart-bar-group">
+                                <div class="bar-fill" style="height: 90%;">
+                                    <span class="bar-value">90%</span>
+                                </div>
+                                <span class="bar-label">Produksi Tambak</span>
+                            </div>
+                            <!-- Bar 2 -->
+                            <div class="chart-bar-group">
+                                <div class="bar-fill" style="height: 75%;">
+                                    <span class="bar-value">75%</span>
+                                </div>
+                                <span class="bar-label">Kapasitas Pengepul</span>
+                            </div>
+                            <!-- Bar 3 -->
+                            <div class="chart-bar-group">
+                                <div class="bar-fill" style="height: 60%;">
+                                    <span class="bar-value">60%</span>
+                                </div>
+                                <span class="bar-label">Utilitas Pabrik</span>
+                            </div>
+                            <!-- Bar 4 -->
+                            <div class="chart-bar-group">
+                                <div class="bar-fill" style="height: 85%;">
+                                    <span class="bar-value">85%</span>
+                                </div>
+                                <span class="bar-label">Logistik / Armada</span>
+                            </div>
+                            <!-- Bar 5 -->
+                            <div class="chart-bar-group">
+                                <div class="bar-fill" style="height: 95%;">
+                                    <span class="bar-value">95%</span>
+                                </div>
+                                <span class="bar-label">Ketersediaan Pasar</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="simulator-legend">
+                        <p><span class="legend-dot active"></span> Garis Hijau/Biru menunjukkan tingkat kelancaran alur rantai pasok pada kondisi cuaca normal (Kemarau).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <a href="#" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-icon"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <span>SI-RPGM</span>
+                </a>
+                <p>Website prototype untuk visualisasi dan analisis Rantai Pasok Garam di Madura secara digital, aman, transparan, dan efisien.</p>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4>Navigasi Cepat</h4>
+                <ul>
+                    <li><a href="#hero">Beranda</a></li>
+                    <li><a href="#urgensi">Urgensi</a></li>
+                    <li><a href="#alur">Alur Rantai Pasok</a></li>
+                    <li><a href="#aktor">Aktor Utama</a></li>
+                    <li><a href="#masalah-solusi">Tantangan & Solusi</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-academic">
+                <h4>Informasi Akademik</h4>
+                <p class="academic-title">Tugas Akhir Semester (UAS)</p>
+                <p>Mata Kuliah: <strong>Analisis dan Perancangan Teknologi Informasi</strong></p>
+                <p>Program Studi: <strong>S1 Teknik Informatika</strong></p>
+                <p>Universitas / Institut Kebanggaan</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>&copy; 2026 SI-RPGM Madura. Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>Dibuat untuk keperluan akademis UAS.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
